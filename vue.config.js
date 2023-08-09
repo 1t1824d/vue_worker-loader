@@ -19,6 +19,7 @@ module.exports = defineConfig({
     assetsDir: "static",
     lintOnSave: true, // 是否开启eslint保存检测
     productionSourceMap: false, // 是否在构建生产包时生成sourcdeMap
+    parallel: false ,
     chainWebpack: (config) => {
         config.resolve.alias
             .set("@", resolve("src"))

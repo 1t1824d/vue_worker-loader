@@ -164,4 +164,30 @@ onmessage = (e) => {
 减少任务处理时间。worker可以有多个（多线程），用多个worker处理主线程的任务时，总的任务时长会减少（e.g. 压缩100张图片）
 ```
 
+#### 错误处理
+
+```
+
+ ERROR  Failed to compile with 1 error                                                                                                                                                                               16:12:04
+
+ error  in ./src/pages/HoneViewPage/demo.worker.js
+
+Syntax Error: Thread Loader (Worker 0)
+Cannot read properties of undefined (reading 'options')
+
+
+ ERROR  Error: Build failed with errors.
+Error: Build failed with errors.
+    at D:\test_project\vue_worker-loader\node_modules\@vue\cli-service\lib\commands\build\index.js:207:23
+    at D:\test_project\vue_worker-loader\node_modules\webpack\lib\webpack.js:148:8
+    at D:\test_project\vue_worker-loader\node_modules\webpack\lib\HookWebpackError.js:68:3
+    at Hook.eval [as callAsync] (eval at create (D:\test_project\vue_worker-loader\node_modules\tapable\lib\HookCodeFactory.js:33:10), <anonymous>:6:1)
+    at Hook.CALL_ASYNC_DELEGATE [as _callAsync] (D:\test_project\vue_worker-loader\node_modules\tapable\lib\Hook.js:18:14)
+    at Cache.shutdown (D:\test_project\vue_worker-loader\node_modules\webpack\lib\Cache.js:150:23)
+    at D:\test_project\vue_worker-loader\node_modules\webpack\lib\Compiler.js:1225:15
+    at Hook.eval [as callAsync] (eval at create (D:\test_project\vue_worker-loader\node_modules\tapable\lib\HookCodeFactory.js:33:10), <anonymous>:6:1)
+    at Hook.CALL_ASYNC_DELEGATE [as _callAsync] (D:\test_project\vue_worker-loader\node_modules\tapable\lib\Hook.js:18:14)
+    at Compiler.close (D:\test_project\vue_worker-loader\node_modules\webpack\lib\Compiler.js:1218:23)
+```
+
 
