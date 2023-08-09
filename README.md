@@ -1,28 +1,32 @@
 # vue_worker-loader
 
 ## Project setup
+
 ```
 npm install
 ```
 
 ### Compiles and hot-reloads for development
+
 ```
 npm run serve
 ```
 
 ### Compiles and minifies for production
+
 ```
 npm run build
 ```
+
 ### 预览
 
 see[预览](https://1t1824d.github.io/vue-worker_loader_preview/#/).
 
-### Vue中使用WebWorker
+### Vue 中使用 WebWorker
 
-See [Vue中使用WebWorker](https://blog.csdn.net/weixin_44240581/article/details/129186915).
+See [Vue 中使用 WebWorker](https://blog.csdn.net/weixin_44240581/article/details/129186915).
 
-#### 安装loader
+#### 安装 loader
 
 ```
 npm install worker-loader -D
@@ -37,7 +41,7 @@ const { defineConfig } = require('@vue/cli-service')
 module.exports = defineConfig({
     transpileDependencies: true,
     lintOnSave:false, // 关闭eslint检查
-
+    parallel: false ,
     chainWebpack: config => {
         config.module
             .rule('worker')
@@ -62,7 +66,7 @@ module.exports = defineConfig({
         </div>
     </div>
 </template>
-  
+
 <script>
 import Worker from './demo.worker.js'; // this.worker = new Worker(); 方式才需要引入
 
@@ -80,13 +84,13 @@ export default {
     },
     methods: {
         InitFun() {
-            /* 
+            /*
             **1.this.worker = new Worker() 这种方式使用，需要这样引入 import Worker from './demo.worker.js';
             **使用上面import进来的js，名字为 demo.worker.js，不可配置，路径相对比较灵活，需要worker-loader  npm install worker-loader -D
-            **2.this.worker = new Worker('worker.js', { name : 'myWorker' });读取public目录下得js文件，可以配置名字，简单粗暴，不需要worker-loader 
+            **2.this.worker = new Worker('worker.js', { name : 'myWorker' });读取public目录下得js文件，可以配置名字，简单粗暴，不需要worker-loader
             **worker的名字，主要在谷歌浏览器 - 控制台 - sources 中体现
             */
-            //      
+            //
             this.worker = new Worker();
             this.worker.onmessage = event => {
                 this.result = event.data;
@@ -107,7 +111,7 @@ export default {
     },
 }
 </script>
-  
+
 <style scoped lang="scss">
 .HoneViewPage {
     display: flex;
@@ -132,7 +136,7 @@ export default {
     }
 }
 </style>
-  
+
 ```
 
 #### demo.worker.js
@@ -167,7 +171,7 @@ onmessage = (e) => {
 减少任务处理时间。worker可以有多个（多线程），用多个worker处理主线程的任务时，总的任务时长会减少（e.g. 压缩100张图片）
 ```
 
-#### 错误处理 
+#### 错误处理
 
 ```
 
@@ -192,9 +196,10 @@ Error: Build failed with errors.
     at Hook.CALL_ASYNC_DELEGATE [as _callAsync] (D:\test_project\vue_worker-loader\node_modules\tapable\lib\Hook.js:18:14)
     at Compiler.close (D:\test_project\vue_worker-loader\node_modules\webpack\lib\Compiler.js:1218:23)
 ```
+
 ```
 Syntax Error: Thread Loader(Worker 1)
- 
+
 Cannot read properties of undefined (reading 'options')
 框架：@vue/cli@5 + vue@2.7 + ts
 
@@ -209,6 +214,3 @@ vue.config.js 配置parallel: false  。构建正式环境关闭thread-loader。
 
 See [vue-cli: Syntax Error: Thread Loader](https://blog.csdn.net/qq_35459724/article/details/127080017).
 See [配置参考 | Vue CLI (vuejs.org)](https://cli.vuejs.org/zh/config/#devserver-proxy).
-
-
-
