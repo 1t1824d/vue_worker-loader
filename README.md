@@ -14,6 +14,9 @@ npm run serve
 ```
 npm run build
 ```
+### 预览
+
+see[预览](https://1t1824d.github.io/vue-worker_loader_preview/#/).
 
 ### Vue中使用WebWorker
 
@@ -164,7 +167,7 @@ onmessage = (e) => {
 减少任务处理时间。worker可以有多个（多线程），用多个worker处理主线程的任务时，总的任务时长会减少（e.g. 压缩100张图片）
 ```
 
-#### 错误处理
+#### 错误处理 
 
 ```
 
@@ -189,5 +192,23 @@ Error: Build failed with errors.
     at Hook.CALL_ASYNC_DELEGATE [as _callAsync] (D:\test_project\vue_worker-loader\node_modules\tapable\lib\Hook.js:18:14)
     at Compiler.close (D:\test_project\vue_worker-loader\node_modules\webpack\lib\Compiler.js:1218:23)
 ```
+```
+Syntax Error: Thread Loader(Worker 1)
+ 
+Cannot read properties of undefined (reading 'options')
+框架：@vue/cli@5 + vue@2.7 + ts
+
+vue-cli 使用wokrer-loader 加载web woker时，使用npm run build 有很大机率会打包失败，报错如上。
+
+thread-loader 与worker-loader有冲突。
+
+解决：
+vue.config.js 配置parallel: false  。构建正式环境关闭thread-loader。
+
+```
+
+See [vue-cli: Syntax Error: Thread Loader](https://blog.csdn.net/qq_35459724/article/details/127080017).
+See [配置参考 | Vue CLI (vuejs.org)](https://cli.vuejs.org/zh/config/#devserver-proxy).
+
 
 
